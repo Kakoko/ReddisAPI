@@ -22,5 +22,11 @@
     <PackageReference Include="StackExchange.Redis" Version="2.6.90" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
-
+<Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+  <ItemGroup>
+    <ReferencePath Condition="'%(FileName)' == 'StackExchange.Redis.StrongName'">
+      <Aliases>signed</Aliases>
+    </ReferencePath>
+  </ItemGroup>
+</Target>
 </Project>
