@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ReddisAPI.Data;
+using ReddisAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,9 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddDbContext<StudentDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("StudentConnection")));
+
+builder.Services.AddScoped<ICacheService, CacheService>();
+
 
 var app = builder.Build();
 
